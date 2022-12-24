@@ -12,19 +12,15 @@ struct ContactInfoView: View {
     
     var body: some View {
         List {
-            Image(systemName: "person.fill")
-                .resizable()
-                .frame(width: 150, height: 150)
-            HStack(spacing: 20) {
-                Image(systemName: "phone")
-                    .foregroundColor(.blue)
-                Text(contact.phoneNumber)
+            HStack {
+                Spacer()
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                Spacer()
             }
-            HStack(spacing: 20) {
-                Image(systemName: "envelope")
-                    .foregroundColor(.blue)
-                Text(contact.email)
-            }
+            ContactView(image: "phone", text: contact.phoneNumber)
+            ContactView(image: "envelope", text: contact.email)
         }
         .listStyle(.grouped)
         .navigationTitle(contact.fullName)
@@ -33,6 +29,12 @@ struct ContactInfoView: View {
 
 struct ContactInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactInfoView(contact: Person(id: 1, name: "", lastName: "", phoneNumber: "", email: ""))
+        ContactInfoView(contact: Person(
+            id: 1,
+            name: "Aleksey",
+            lastName: "Bu",
+            phoneNumber: "89037821216",
+            email: "oldf03@gmail.com"
+        ))
     }
 }

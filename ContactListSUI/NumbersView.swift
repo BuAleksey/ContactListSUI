@@ -8,13 +8,30 @@
 import SwiftUI
 
 struct NumbersView: View {
+    let contacts: [Person]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(contacts) { contact in
+                Section(header: Text(contact.fullName)) {
+                    ContactView(image: "phone", text: contact.phoneNumber)
+                    ContactView(image: "envelope", text: contact.email)
+                }
+            }
+            .listStyle(.grouped)
+            .navigationTitle("Contact List")
+        }
     }
 }
 
 struct NumbersView_Previews: PreviewProvider {
     static var previews: some View {
-        NumbersView()
+        NumbersView(contacts: [Person(
+            id: 1,
+            name: "Aleksey",
+            lastName: "Bu",
+            phoneNumber: "89037821216",
+            email: "oldf03@gmail.com"
+        )])
     }
 }
